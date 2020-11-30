@@ -23,6 +23,6 @@ func Connect() {
 		fmt.Println(err.Error())
 		panic(err.Error())
 	}
-	db.AutoMigrate(&models.Admin{})
+	db.AutoMigrate(&models.Admin{}, &models.District{}, &models.VM{})
 	DB = db
 }

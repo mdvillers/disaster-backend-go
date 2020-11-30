@@ -13,6 +13,7 @@ import (
 
 //GetUser implies getting the single User info
 func GetUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	var admins []models.Admin
 	db.DB.Find(&admins)
 	json.NewEncoder(w).Encode(admins)
@@ -20,7 +21,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 
 //CreateAdmin means to Create an admin
 func CreateAdmin(w http.ResponseWriter, r *http.Request) {
-	// w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 	var admin models.Admin
 	_ = json.NewDecoder(r.Body).Decode(&admin)
 	db.DB.Create(&admin)
@@ -29,6 +30,7 @@ func CreateAdmin(w http.ResponseWriter, r *http.Request) {
 
 //DeleteAdmin means to Delete an admin
 func DeleteAdmin(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	id := vars["id"]
 
@@ -40,5 +42,6 @@ func DeleteAdmin(w http.ResponseWriter, r *http.Request) {
 
 //SignIn to get token
 func SignIn(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprintf(w, "<h1>Signin here</h1>")
 }
